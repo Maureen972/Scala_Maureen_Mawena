@@ -15,7 +15,7 @@ object Ident_nb {
 
 
 def obj(item: Type) = item match {
-  case A => small_airport
-  case B => heliport
+  case A => "small_airport"
+  case B => "heliport"
 }
 /** Contrainte: id 4 chiffre, ident 4 caractère, type soit small_airport soit Heliport, continent 2 lettres
