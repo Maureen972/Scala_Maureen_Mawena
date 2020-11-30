@@ -1,10 +1,24 @@
-case class Airport(Id:Int, Ident:String, Type:String, Name:String,
-                   latitude_deg:Float, longitude_deg:Float, elevation_ft:Float,
-                   continent:String, iso_country:String, iso_region: String, municipality: String, scheduled_service: String,
-                   gps_code:String, iata_code:String, local_code:String, Home_link : String, wikipedia_link:String, keyword:String)
+case class Airport(id : Int, 
+                   ident:IdentNb,
+                   type:String, 
+                   name:String,
+                   latitude_deg:Float,
+                   longitude_deg:Float, 
+                   elevation_ft:Float,
+                   continent:String, 
+                   iso_country:String, 
+                   iso_region: String, 
+                   municipality: String, 
+                   scheduled_service: String,
+                   gps_code:String, 
+                   iata_code:String, 
+                   local_code:String, 
+                   home_link : String, 
+                   wikipedia_link:String, 
+                   keyword:String)
 
-sealed abstract class Ident_nb (val value: String)
-object Ident_nb {
+sealed abstract class IdentNb (val value: String)
+object IdentNb {
   def Four(int: Int): Some[Ident_id] = {
     if (int.toString.length == 4 )
       Some(new Ident_id(String){})
