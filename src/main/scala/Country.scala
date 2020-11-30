@@ -22,21 +22,3 @@ object Country_code {
   }
 }
 
-/** sealed abstract class SecurityCodeCC(val value: Int)
-  object SecurityCodeCC {
-    def fromInt(int: Int) = {
-      if (int.toString.length >= 3 && int.toString.length <= 4)
-        Some(new SecurityCodeCC(int){})
-      else
-        None
-    }
-  }
-case class SecurityCodeCC private(val value: Int)
-  object SecurityCodeCC {
-    def fromInt(int: Int) = {
-      if (int.toString.length >= 3 && int.toString.length <= 4)
-        Some(new SecurityCodeCC(int){})
-      else
-        None
-    }
-  }
