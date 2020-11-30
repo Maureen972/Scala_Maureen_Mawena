@@ -4,7 +4,7 @@ case class Country(Id:Id_country, Code:Country_code, Continent:String, Wikipedia
 
 sealed abstract class Id_country(val value: Int)
 object Id_country {
-  def SixNumber(int: Int) = {
+  def fromInt(int: Int) = {
     if (int.toString.length == 6 )
       Some(new Id_country(int){})
     else
