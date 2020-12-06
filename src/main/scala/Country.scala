@@ -1,22 +1,26 @@
-case class Country(Id:Id_country, Code:Country_code, Continent:String, Wikipedia_link:String, Keywords:String)
+case class Country(id:IdCountry,
+                   code:CountryCode,
+                   continent:String,
+                   wikipedia_link:String,
+                   keywords:String)
 
-/** Contraintes sur :  Id, Code, Wikipedia_link (utiliser la fin d'une serie de caractères)**/
+/** Contraintes sur :  Id, Code **/
 
-sealed abstract class Id_country(val value: Int)
-object Id_country {
+sealed abstract class IdCountry(val value: Int)
+object IdCountry {
   def fromInt(int: Int) = {
     if (int.toString.length == 6 )
-      Some(new Id_country(int){})
+      Some(new IdCountry(int){})
     else
       None
   }
 }
 
-sealed abstract class Country_code(val value: String)
-object Country_code {
-  def fromInt(int: Int): Option[Country_code] = {
+sealed abstract class CountryCode(val value: String)
+object CountryCode {
+  def fromInt(int: Int): Option[CountryCode] = {
     if (int.toString.length == 2 )
-      Some(new Country_code(String){})
+      Some(new CountryCode(String){})
     else
       None
   }

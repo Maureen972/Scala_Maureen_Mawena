@@ -6,7 +6,7 @@ case class Airport(id : AirportId,
                    longitude_deg:Float,
                    elevation_ft:Float,
                    continent:String,
-                   iso_country:String,
+                   iso_country:CountryCode,
                    iso_region: String,
                    municipality: String,
                    scheduled_service: String,
@@ -16,6 +16,8 @@ case class Airport(id : AirportId,
                    home_link : String,
                    wikipedia_link:String,
                    keyword:String)
+
+/** Contrainte: id , ident , type , iso_country**/
 
 sealed abstract class AirportId(val value: Int)
 object AirportId {
@@ -38,8 +40,16 @@ object IdentNb {
   }
 }
 
+sealed abstract class CountryCode(val value: String)
+object CountryCode {
+  def fromInt(int: Int): Option[CountryCode] = {
+    if (int.toString.length == 2 )
+      Some(new CountryCode(String){})
+    else
+      None
+  }
+}
 sealed trait AirportType
 case object SmallAirport extends AirportType
 case object Heliport extends AirportType
 
-/** Contrainte: id 4 chiffre, ident 4 caractère, type soit small_airport soit Heliport, continent 2 lettres

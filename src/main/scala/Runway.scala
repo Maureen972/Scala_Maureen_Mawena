@@ -1,6 +1,6 @@
-case class Runway(id:Int,
-                  airport_ref:Int,
-                  airport_ident:String,
+case class Runway(id:RunwayId,
+                  airport_ref: AirportRef,
+                  airport_ident: AirportIdent,
                   length_ft: Int,
                   width_ft: Int,
                   surface:String,
@@ -18,4 +18,35 @@ case class Runway(id:Int,
                   he_elevation_ft:Float,
                   he_heading_degT:Float,
                   he_displaced_threshold_ft:Float )
-/** Contraintes: Id, Airport_ref, Airport_ident, Le_ident, He_ident**/
+
+/** Contraintes: Id, Airport_ref, Airport_ident**/
+
+sealed abstract class RunwayId(val value: Int)
+object RunwayId {
+  def fromInt(int: Int) = {
+    if (int.toString.length == 6 )
+      Some(new RunwayId(int){})
+    else
+      None
+  }
+}
+
+sealed abstract class AirportRef(val value: Int)
+object AirportRef {
+  def fromInt(int: Int) = {
+    if (int.toString.length == 4)
+      Some(new AirportRef(int){})
+    else
+      None
+  }
+}
+
+sealed abstract class AirportIdent(val value: String)
+object AirportIdent {
+  def fromInt(int: Int) = {
+    if (int.toString.length == 3 )
+      Some(new AirportIdent(String){})
+    else
+      None
+  }
+}
