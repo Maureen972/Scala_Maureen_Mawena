@@ -40,7 +40,7 @@ object IdentNb {
   }
 }
 
-sealed abstract class CountryCode(val value: String)
+/**sealed abstract class CountryCode(val value: String)
 object CountryCode {
   def fromInt(int: Int): Option[CountryCode] = {
     if (int.toString.length == 2 )
@@ -48,25 +48,20 @@ object CountryCode {
     else
       None
   }
-}
+}*/
 sealed trait AirportType
 case object SmallAirport extends AirportType
 case object Heliport extends AirportType
 
-/**object ReadCSV extends App{ val bufferedSource = io.Source.fromFile("src/main/resources/airports.csv") for (line <- bufferedSource.getLines) { val cols = line.split(",").map(_.trim) val airport = Airport(cols(0),cols(1),cols(2),cols(3),cols(4),
-  cols(5),cols(6),cols(7),cols(8),cols(9),cols(10),cols(11),cols(12),cols(13),cols(14),cols(15),cols(16),cols(17))
-/**val airports = List[Airport]
-airports += airport println(airport) */
-println(s"${cols(0)}${cols(1)}|${cols(2)}|${cols(3)}|${cols(4)}|${cols(5)}|${cols(6)}|${cols(7)}|${cols(8)}|${cols(9)}|${cols(10)}|${cols(11)}|${cols(12)}|${cols(13)}|${cols(14)}|${cols(15)}|${cols(16)}|${cols(17)}}") } bufferedSource.close }
 
 
 object ReadAirport extends App {
 
-  val Airport = io.Source.fromFile(src/main/scala/source/Airport.csv)
+  val Airport = io.Source.fromFile("/src/main/scala/source/Airport.csv")
   for (line <- Airport.getLines) {
     val cols = line.split(",").map(_.trim)
     // do whatever you want with the columns here
-    println(s"${cols(0)}${cols(1)}|${cols(2)}|${cols(3)}|${cols(4)}|${cols(5)}|${cols(6)}|${cols(7)}|${cols(8)}|${cols(9)}|${cols(10)}|${cols(11)}|${cols(12)}|${cols(13)}|${cols(14)}|${cols(15)}|${cols(16)}|${cols(17)}}") } bufferedSource.close }
+    println(s"${cols(0)}${cols(1)}|${cols(2)}|${cols(3)}|${cols(4)}|${cols(5)}|${cols(6)}|${cols(7)}|${cols(8)}|${cols(9)}|${cols(10)}|${cols(11)}|${cols(12)}|${cols(13)}|${cols(14)}|${cols(15)}|${cols(16)}|${cols(17)}}")
   }
-  bufferedSource.close
-}*/
+  Airport.close
+}
