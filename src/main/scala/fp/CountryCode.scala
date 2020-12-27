@@ -1,3 +1,5 @@
+package fp
+
 sealed abstract class CountryCode (val value: String)
 object CountryCode {
   def fromInt(int: Int): Option[CountryCode] = {

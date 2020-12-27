@@ -1,3 +1,5 @@
+package fp
+
 case class Runway(id:RunwayId,
                   airport_ref: AirportRef,
                   airport_ident: AirportIdent,
@@ -20,33 +22,18 @@ case class Runway(id:RunwayId,
                   he_displaced_threshold_ft:Float )
 
 /** Contraintes: Id, Airport_ref, Airport_ident**/
+object Runway {
 
-sealed abstract class RunwayId(val value: Int)
-object RunwayId {
-  def fromInt(int: Int) = {
-    if (int.toString.length == 6 )
-      Some(new RunwayId(int){})
-    else
-      None
+  sealed abstract class RunwayId(val value: Int)
+
+  object RunwayId {
+    def fromInt(int: Int) = {
+      if (int.toString.length == 6)
+        Some(new RunwayId(int) {})
+      else
+        None
+    }
   }
+
 }
 
-sealed abstract class AirportRef(val value: Int)
-object AirportRef {
-  def fromInt(int: Int) = {
-    if (int.toString.length == 4)
-      Some(new AirportRef(int){})
-    else
-      None
-  }
-}
-
-sealed abstract class AirportIdent(val value: String)
-object AirportIdent {
-  def fromInt(int: Int) = {
-    if (int.toString.length == 3 )
-      Some(new AirportIdent(String){})
-    else
-      None
-  }
-}
