@@ -8,4 +8,10 @@ object CountryCode {
     else
       None
   }
+  /*def fromStrings(strs:Array[String]): Option[CountryCode] ={
+    if (strs.size == 1){
+      val Country.CountryCode = Country.CountryCode.fromInt(strs(8).map(_.asDigit).toList)
+
+
+    }*/
 }

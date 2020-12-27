@@ -1,8 +1,8 @@
 package fp
 
-case class Airport(id : AirportId,
-                   ident:IdentNb,
-                   airport_type: AirportType,
+case class Airport private(id : Airport.AirportId,
+                   ident:Airport.AirportIdent,
+                   airport_type: Airport.AirportType,
                    airport_name:String,
                    latitude_deg:Float,
                    longitude_deg:Float,
@@ -33,35 +33,12 @@ object Airport {
     }
   }
 
-  sealed abstract class IdentNb(val value: String)
-
-  object IdentNb {
-    def fromInt(int: Int) = {
-      if (int.toString.length == 4) {
-        Some(new IdentNb(String) {})
-      } else {
-        None
-      }
-    }
-  }
-
-
-  sealed abstract class AirportRef(val value: Int)
-
-  object AirportRef {
-    def fromInt(int: Int) = {
-      if (int.toString.length == 4)
-        Some(new AirportRef(int) {})
-      else
-        None
-    }
-  }
 
   sealed abstract class AirportIdent(val value: String)
 
   object AirportIdent {
     def fromInt(int: Int) = {
-      if (int.toString.length == 3)
+      if (int.toString.length >= 3 && int.toString.length <= 4)
         Some(new AirportIdent(String) {})
       else
         None
@@ -74,6 +51,14 @@ object Airport {
 
   case object Heliport extends AirportType
 
+  def fromStrings(strs:Array[String]): Option[Country] = {
+    if (strs.size == 2){
+      val Airport.AirportId = Airport.AirportId.fromInt(strs(8).map(_.asDigit).toList).toOption
+      val Airport.AirportIdent = Airport.AirportIdent.fromInt(strs(1).toList).toOption
+
+
+    }
+  }
 
 }
 

@@ -1,8 +1,8 @@
 package fp
 
-case class Runway(id:RunwayId,
-                  airport_ref: AirportRef,
-                  airport_ident: AirportIdent,
+case class Runway(id:Runway.RunwayId,
+                  airport_ref: Runway.AirportRef,
+                  airport_ident: Runway.AirportIdent,
                   length_ft: Int,
                   width_ft: Int,
                   surface:String,
@@ -21,7 +21,7 @@ case class Runway(id:RunwayId,
                   he_heading_degT:Float,
                   he_displaced_threshold_ft:Float )
 
-/** Contraintes: Id, Airport_ref, Airport_ident**/
+
 object Runway {
 
   sealed abstract class RunwayId(val value: Int)
@@ -32,6 +32,38 @@ object Runway {
         Some(new RunwayId(int) {})
       else
         None
+    }
+  }
+
+
+  sealed abstract class AirportRef(val value: Int)
+
+  object AirportRef {
+    def fromInt(int: Int) = {
+      if (int.toString.length == 6)
+        Some(new AirportRef(int) {})
+      else
+        None
+    }
+  }
+
+  sealed abstract class AirportIdent(val value: Int)
+
+  object AirportIdent {
+    def fromInt(int: Int) = {
+      if (int.toString.length == 6)
+        Some(new AirportIdent(int) {})
+      else
+        None
+    }
+  }
+
+  def fromStrings(strs:Array[String]): Option[Country] = {
+    if (strs.size == 3){
+      val Runway.RunwayId = Runway.RunwayId.fromInt(strs(8).map(_.asDigit).toList).toOption
+      val Runway.AirportRef = Runway.AirportRef.fromInt(strs(1).toList).toOption
+      val Runway.AirportIdent = Runway.AirportIdent.fromInt(strs(1).toList).toOption
+
     }
   }
 

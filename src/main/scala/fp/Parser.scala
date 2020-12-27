@@ -10,6 +10,9 @@ class Parser {
 
   def loadAllCsvs()={
     val rawCountries = parseCsvFile("Country.csv", Country.fromStrings)
+    val rawAirports = parseCsvFile("Airport.csv", Airport.fromStrings)
+    val rawRunways = parseCsvFile("Runway.csv", Runway.fromStrings)
+
   }
 
 

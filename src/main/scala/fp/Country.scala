@@ -1,7 +1,7 @@
 package fp
 
 case class Country private(id:Country.CountryId,
-                   code:CountryCode,
+                   code:Country.CountryCode,
                    continent:String,
                    wikipedia_link:String,
                    keywords:List[String])
@@ -20,8 +20,10 @@ object Country {
     }
   }
   def fromStrings(strs:Array[String]): Option[Country] ={
+    if (strs.size == 1){
+      val Country.CountryId = Country.CountryId.fromInt(strs(8).map(_.asDigit).toList).toOption
+    }
 
-    ???
 
   }
 
