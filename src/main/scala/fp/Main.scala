@@ -11,10 +11,17 @@ object Main {
   }
 
   def airportcsv(args: Array[String]): Unit = {
-    val source = Source.fromFile("src/main/scala/source/fp.Airport.csv")
-    val linea = source.getLines()
+    val sourceA = Source.fromFile("src/main/scala/source/fp.Airport.csv")
+    val linea = sourceA.getLines()
     val airport = linea.map(line => line.split(" , ").map(_.toDouble)).toArray
-    source.close()
+    sourceA.close()
+  }
+
+  def runwaycsv(args: Array[String]): Unit = {
+    val sourceR = Source.fromFile("src/main/scala/source/fp.Runway.csv")
+    val liner = sourceR.getLines()
+    val runway = liner.map(line => line.split(" , ").map(_.toDouble)).toArray
+    sourceR.close()
   }
 
 
